@@ -11,40 +11,14 @@ An asynchronous, multi-agent contract due-diligence pipeline engineered with raw
 ---
 
 ## System Architecture
-[Raw Legal PDF / Text]
-│
-▼
-┌─────────────────────────────────────────────────────────────┐
-│ 1. Hierarchical LegalChunker                                │
-│    - Regex boundary detection (Articles, Sections, Recitals)│
-│    - Mechanical rolling-window fallback (200-char overlap)  │
-└──────────────────────────────┬──────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────┐
-│ 2. Asynchronous DAG Fan-Out (asyncio + Semaphore Pool)      │
-│    - Reviewer Node: Structured Risk Extraction              │
-│    - Verification Node: Self-consistency guardrail          │
-│    - Safe state merging via return_exceptions=True          │
-└──────────────────────────────┬──────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────┐
-│ 3. PDF-to-DOCX Alignment Bridge (Sequence Matching)        │
-│    - Preceding-context weighting for disambiguation         │
-│    - Identical boilerplate resolution                       │
-└──────────────────────────────┬──────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────┐
-│ 4. Low-Level OOXML AST Engine (lxml DOM manipulation)       │
-│    - Surgical run splitting with copy.deepcopy(rPr)         │
-│    - Global w:id counter enforcement                        │
-│    - Native <w:del> and <w:ins> node injection              │
-└──────────────────────────────┬──────────────────────────────┘
-│
-▼
-[Production-Ready Redlined .docx + Telemetry Audit]
+```mermaid
+flowchart TD
+    A[Raw Legal PDF / Text] --> B[1. Hierarchical LegalChunker<br/>• Regex boundary detection<br/>• 200-char rolling-window fallback]
+    B --> C[2. Asynchronous DAG Fan-Out<br/>• Reviewer Node: Risk Extraction<br/>• Verification Node: Self-consistency<br/>• Safe state merging]
+    C --> D[3. PDF-to-DOCX Alignment Bridge<br/>• Preceding-context weighting<br/>• Boilerplate disambiguation]
+    D --> E[4. Low-Level OOXML AST Engine<br/>• Surgical run splitting with deepcopy<br/>• Global w:id counter enforcement<br/>• Native w:del and w:ins injection]
+    E --> F[Production-Ready Redlined .docx + Telemetry Audit]
+```
 
 
 ---
