@@ -1,5 +1,8 @@
-# Veritas-Graph: Deterministic OOXML Redlining Engine
-> Production-grade legal due-diligence engine. Raw Python, asyncio, lxml. Zero LangChain.
+<div align="center">
+
+# ptp063 / veritas-graph
+
+**Production-grade legal due-diligence engine. Raw Python, asyncio, lxml. Zero LangChain.**
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -8,9 +11,11 @@
 
 An asynchronous, multi-agent contract due-diligence pipeline engineered with raw Python, `asyncio`, and `lxml`. Built to bypass brittle LLM chat wrappers and output native Microsoft Word Tracked Changes (`.docx`) with verified text provenance and zero inline formatting corruption.
 
+</div>
+
 ---
 
-## System Architecture
+## 🏗️ System Architecture
 ```mermaid
 flowchart TD
     A[Raw Legal PDF / Text] --> B[1. Hierarchical LegalChunker<br/>• Regex boundary detection<br/>• 200-char rolling-window fallback]
@@ -20,10 +25,9 @@ flowchart TD
     E --> F[Production-Ready Redlined .docx + Telemetry Audit]
 ```
 
-
 ---
 
-## Core Engineering Decisions
+## ⚡ Core Engineering Decisions
 
 * **Surgical OOXML Run-Splitting:** Standard string replacement destroys inline run formatting (`w:rPr`). Because `lxml` enforces single-parent DOM constraints, naive element insertion detaches formatting tags from the source run. Veritas-Graph uses `copy.deepcopy()` to clone run properties into injected `<w:del>` and `<w:ins>` nodes, maintaining exact styling across untouched text.
 * **Global AST ID Counter:** Word requires unique `w:id` values across all revision nodes in the document tree. The AST engine dynamically discovers the highest existing `w:id` across paragraph definitions and increments sequentially.
@@ -32,7 +36,7 @@ flowchart TD
 
 ---
 
-## Known Architecture Limitations & Roadmap
+## 🗺️ Known Limitations & Roadmap
 
 * **Multi-Run Span Accumulation:** Clauses spanning across multiple fragmented `<w:r>` runs currently escalate to manual review with an explicit error. *Roadmap:* Implement a character-offset run accumulator.
 * **Aligner Candidate Pre-Filtering:** Paragraph alignment runs at $O(n^2)$ complexity. *Roadmap:* Integrate TF-IDF token pre-filtering to bound sequence matching to top-5 candidate paragraphs.
@@ -40,11 +44,11 @@ flowchart TD
 
 ---
 
-## Quickstart
+## 🚀 Quickstart
 
 **1. Environment Setup**
 ```bash
-git clone https://github.com/PTP063/veritas-graph.git
+git clone https://github.com/ptp063/veritas-graph.git
 cd veritas-graph
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
