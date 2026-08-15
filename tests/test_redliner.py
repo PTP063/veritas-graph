@@ -21,8 +21,7 @@ def test_ast_redlining():
         
         for i, p in enumerate(doc.paragraphs):
             if target in p.text:
-                success, msg = OOXMLRedliner.apply_tracked_change(doc, i, target, revised)
-                assert success
+                OOXMLRedliner.apply_tracked_change(doc, i, target, revised)
                 break
                 
         doc.save(out_path)

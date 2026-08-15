@@ -1,12 +1,14 @@
 import pdfplumber
 from pydantic import BaseModel
 
+
 class PhraseGrounding(BaseModel):
     page_num: int
     x0: float
     top: float
     x1: float
     bottom: float
+
 
 def find_phrase_coordinates(pdf_path: str, phrase: str) -> PhraseGrounding:
     with pdfplumber.open(pdf_path) as pdf:
@@ -21,7 +23,7 @@ def find_phrase_coordinates(pdf_path: str, phrase: str) -> PhraseGrounding:
                     x0=float(result["x0"]),
                     top=float(result["top"]),
                     x1=float(result["x1"]),
-                    bottom=float(result["bottom"])
+                    bottom=float(result["bottom"]),
                 )
-    
+
     raise ValueError(f"Phrase '{phrase}' not found in the document.")

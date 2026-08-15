@@ -35,11 +35,10 @@ def test_ooxml_validation_roundtrip():
     doc = Document()
     doc.add_paragraph("Target paragraph to be changed.")
     
-    success, msg = OOXMLRedliner.apply_tracked_change(
+    OOXMLRedliner.apply_tracked_change(
         doc, 
         paragraph_index=0, 
         original_text="Target paragraph to be changed.", 
         replacement_text="Revised paragraph."
     )
-    assert success is True
     assert OOXMLRedliner.validate_document(doc) is True

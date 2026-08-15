@@ -1,0 +1,11 @@
+google-genai
+python-docx
+pdfplumber
+reportlab
+lxml
+pydantic
+python-dotenv
+pytest
+pytest-asyncio
+mypy
+ruff
