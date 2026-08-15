@@ -1,4 +1,5 @@
 # Veritas-Graph: Deterministic OOXML Redlining Engine
+> Production-grade legal due-diligence engine. Raw Python, asyncio, lxml. Zero LangChain.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
