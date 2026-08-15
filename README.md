@@ -70,3 +70,15 @@ python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
+**2. Configuration**
+Create a `.env` file in the root directory and add your Google Gemini API key:
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+**3. Run the Pipeline**
+Execute the orchestration pipeline demo:
+```bash
+python main.py
+```
